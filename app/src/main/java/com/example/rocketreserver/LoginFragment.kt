@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
             binding.submit.visibility = View.GONE
             lifecycleScope.launchWhenResumed {
                 val response = try {
-                    apolloClient.mutate(LoginMutation(email = Input.fromNullable(email))).toDeferred().await()
+                    apolloClient(requireContext()).mutate(LoginMutation(email = Input.fromNullable(email))).toDeferred().await()
                 } catch (e: Exception) {
                     null
                 }
@@ -48,7 +48,7 @@ class LoginFragment : Fragment() {
                     return@launchWhenResumed
                 }
 
-                User.setToken(context!!, login)
+                User.setToken(requireContext(), login)
                 findNavController().popBackStack()
             }
         }
