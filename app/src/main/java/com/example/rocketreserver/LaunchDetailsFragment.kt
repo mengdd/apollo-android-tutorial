@@ -37,13 +37,16 @@ class LaunchDetailsFragment : Fragment() {
             val response = try {
                 apolloClient(requireContext()).query(LaunchDetailsQuery(id = args.launchId)).toDeferred().await()
             } catch (e: ApolloException) {
-                null
+                binding.progressBar.visibility = View.GONE
+                binding.error.text = "Oh no... A protocol error happened"
+                binding.error.visibility = View.VISIBLE
+                return@launchWhenResumed
             }
 
-            val launch = response?.data?.launch
+            val launch = response.data?.launch
             if (launch == null || response.hasErrors()) {
-                Log.d("LaunchDetails", "Failure")
                 binding.progressBar.visibility = View.GONE
+                binding.error.text = response.errors?.get(0)?.message
                 binding.error.visibility = View.VISIBLE
                 return@launchWhenResumed
             }
