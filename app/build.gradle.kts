@@ -16,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-    
+
     buildFeatures {
         viewBinding = true
     }
@@ -46,6 +46,8 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:2.1.2")
     implementation("com.google.android.material:material:1.1.0")
     implementation("androidx.security:security-crypto:1.0.0-rc02")
+    implementation("com.apollographql.apollo:apollo-runtime:2.1.0")
+    implementation("com.apollographql.apollo:apollo-coroutines-support:2.1.0")
 
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
