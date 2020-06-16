@@ -10,3 +10,11 @@ This repo has two branches:
 
 * [master](https://github.com/apollographql/apollo-android-tutorial/tree/master) is the final state of the application with all functionality
 * [initial](https://github.com/apollographql/apollo-android-tutorial/tree/initial) is the starter project with the boilerplate and UI code already written but no Apollo-Android code.
+
+
+## Notes:
+Download schema:
+```shell script
+mkdir -p app/src/main/graphql/com/example/rocketreserver/
+./gradlew :app:downloadApolloSchema -Pcom.apollographql.apollo.endpoint='https://apollo-fullstack-tutorial.herokuapp.com/' -Pcom.apollographql.apollo.schema='src/main/graphql/com/example/rocketreserver/schema.json'
+```
