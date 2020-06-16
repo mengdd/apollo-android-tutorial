@@ -3,6 +3,7 @@ package com.example.rocketreserver
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.rocketreserver.databinding.LaunchItemBinding
 
 class LaunchListAdapter(val launches: List<LaunchListQuery.Launch>) :
@@ -22,5 +23,9 @@ class LaunchListAdapter(val launches: List<LaunchListQuery.Launch>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val launch = launches.get(position)
         holder.binding.site.text = launch.site ?: ""
+        holder.binding.missionName.text = launch.mission?.name
+        holder.binding.missionPatch.load(launch.mission?.missionPatch) {
+            placeholder(R.drawable.ic_placeholder)
+        }
     }
 }
